@@ -6,7 +6,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class UsuarioRequest {
-
     @NotBlank
     @Email
     private String email;
