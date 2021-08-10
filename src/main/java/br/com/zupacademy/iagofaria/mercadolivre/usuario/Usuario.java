@@ -34,4 +34,6 @@ public class Usuario {
     @Deprecated
     public Usuario() {
     }
+
+    //teste do commit
 }
