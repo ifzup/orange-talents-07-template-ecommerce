@@ -24,4 +24,5 @@ public class UsuarioRequest {
         return new Usuario(this.email, new SenhaLimpa(senha));}
 
 
+
 }
