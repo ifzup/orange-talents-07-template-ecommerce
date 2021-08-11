@@ -1,5 +1,7 @@
 package br.com.zupacademy.iagofaria.mercadolivre.usuario;
 
+import br.com.zupacademy.iagofaria.mercadolivre.validator.UniqueValue;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -8,6 +10,7 @@ import javax.validation.constraints.Size;
 public class UsuarioRequest {
     @NotBlank
     @Email
+    @UniqueValue(domainClass = Usuario.class, fieldName = "email")
     private String email;
 
     @NotBlank
