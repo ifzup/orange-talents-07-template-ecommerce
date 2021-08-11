@@ -16,4 +16,8 @@ public class TokenResponse {
     public String getTipo() {
         return tipo;
     }
+
+    @Deprecated
+    public TokenResponse() {
+    }
 }

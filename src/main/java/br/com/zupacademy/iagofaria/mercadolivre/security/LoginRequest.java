@@ -20,4 +20,8 @@ public class LoginRequest {
     public String getSenha() {
         return senha;
     }
+
+    @Deprecated
+    public LoginRequest() {
+    }
 }
