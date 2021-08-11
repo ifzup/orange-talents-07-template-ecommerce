@@ -3,7 +3,6 @@ package br.com.zupacademy.iagofaria.mercadolivre.usuario;
 import br.com.zupacademy.iagofaria.mercadolivre.validator.UniqueValue;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -22,6 +21,7 @@ public class UsuarioRequest {
         this.senha = senha;
     }
 
-    public Usuario criaUsuario(){
-        return new Usuario(this.email, new SenhaLimpa(senha));}
+    public Usuario criaUsuario() {
+        return new Usuario(this.email, new SenhaLimpa(senha));
+    }
 }

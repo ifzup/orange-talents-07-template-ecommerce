@@ -17,7 +17,7 @@ public class Usuario implements UserDetails {
 
     @NotNull
     @PastOrPresent
-    private LocalDateTime dataCadastro  = LocalDateTime.now();
+    private LocalDateTime dataCadastro = LocalDateTime.now();
 
     @NotBlank
     @Email

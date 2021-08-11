@@ -19,7 +19,7 @@ public class CategoriaController {
 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody @Valid CategoriaRequest CategoriaForm){
+    public void cadastrar(@RequestBody @Valid CategoriaRequest CategoriaForm) {
         Categoria categoria = CategoriaForm.converter(manager);
         manager.persist(categoria);
     }

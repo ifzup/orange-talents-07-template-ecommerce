@@ -5,19 +5,19 @@ public class LoginRequest {
     private String username;
     private String senha;
 
-    public void setUsername(String username){
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setSenha(String senha){
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 
-    public String getUsername(){
+    public String getUsername() {
         return username;
     }
 
-    public String getSenha(){
+    public String getSenha() {
         return senha;
     }
 }

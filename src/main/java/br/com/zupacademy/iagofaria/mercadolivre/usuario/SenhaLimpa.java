@@ -4,7 +4,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 public class SenhaLimpa {
     @NotBlank
@@ -15,7 +14,7 @@ public class SenhaLimpa {
         this.senha = senha;
     }
 
-    public String hash(){
+    public String hash() {
         return new BCryptPasswordEncoder().encode(senha);
     }
 }
