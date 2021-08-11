@@ -2,6 +2,7 @@ package br.com.zupacademy.iagofaria.mercadolivre.categoria;
 
 import br.com.zupacademy.iagofaria.mercadolivre.validator.FindObjectId;
 import br.com.zupacademy.iagofaria.mercadolivre.validator.UniqueValue;
+import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
@@ -25,6 +26,11 @@ public class CategoriaRequest {
 
 
     public Categoria converter(EntityManager manager) {
-        return new Categoria(nome);
+        Categoria categoria = new Categoria(nome);
+        if(idDaCategoriaMae != null){
+            Categoria categoriaMae = manager.find(Categoria.class, idDaCategoriaMae);
+            categoriaMae.setCategoriaMae(categoriaMae);
+        }
+        return categoria;
     }
 }
