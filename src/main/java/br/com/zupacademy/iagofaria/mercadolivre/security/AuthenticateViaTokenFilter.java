@@ -2,6 +2,7 @@ package br.com.zupacademy.iagofaria.mercadolivre.security;
 
 import br.com.zupacademy.iagofaria.mercadolivre.usuario.Usuario;
 import br.com.zupacademy.iagofaria.mercadolivre.usuario.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -13,7 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class AuthenticateViaTokenFilter extends OncePerRequestFilter {
+
+    @Autowired
     private TokenService tokenService;
+
+    @Autowired
     private UsuarioRepository usuarioRepository;
 
     public AuthenticateViaTokenFilter(TokenService tokenService, UsuarioRepository usuarioRepository) {
