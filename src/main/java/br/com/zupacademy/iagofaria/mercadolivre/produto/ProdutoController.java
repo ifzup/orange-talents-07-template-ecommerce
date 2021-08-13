@@ -35,9 +35,9 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<ProdutoRequest> cadastraProduto(@RequestBody @Valid ProdutoRequest produto, @AuthenticationPrincipal Usuario usuario){
+    public ResponseEntity<ProdutoRequest> cadastraProduto(@RequestBody @Valid ProdutoRequest produto, @AuthenticationPrincipal Usuario usuario) {
         Optional<Produto> produtoModel = produto.converter(categoriaRepository, usuario);
-        if(produtoModel.isPresent()) {
+        if (produtoModel.isPresent()) {
             produtoRepository.save(produtoModel.get());
             return ResponseEntity.ok().build();
         }
@@ -49,9 +49,9 @@ public class ProdutoController {
     public ResponseEntity<?> adicionarImagens(@PathVariable Long id, @Valid ImagemProdutoRequest imagemForm, @AuthenticationPrincipal Usuario usuario) {
 
         Optional<Produto> produtoObj = produtoRepository.findById(id);
-        if(produtoObj.isPresent()) {
+        if (produtoObj.isPresent()) {
             Produto produto = produtoObj.get();
-            if(!produto.pertenceAoUsuario(usuario.getEmail())) return ResponseEntity
+            if (!produto.pertenceAoUsuario(usuario.getEmail())) return ResponseEntity
                     .status(HttpStatus.FORBIDDEN)
                     .body("Você não pode adicionar fotos a um produto que não é seu");
 
