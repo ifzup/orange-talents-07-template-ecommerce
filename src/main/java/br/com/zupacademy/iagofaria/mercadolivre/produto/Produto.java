@@ -14,6 +14,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Produto {
@@ -49,10 +50,26 @@ public class Produto {
     @JoinColumn(name = "produto_id")
     private Set<Caracteristica> listaCaracteristicas = new HashSet<>();
 
+
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+    private Set<ImagemProduto> imagens = new HashSet<>();
+
+    public void associaImagens(Set<String> links) {
+        Set<ImagemProduto> imagens = links.stream()
+                .map(link -> new ImagemProduto(this, link))
+                .collect(Collectors.toSet());
+
+        this.imagens.addAll(imagens);
+    }
+
+    public boolean pertenceAoUsuario(String email) {
+        return this.usuario.getEmail().equals(email);
+    }
+
     private Instant momentoCadastro = Instant.now();
 
     public Produto(String nome, BigDecimal valor, Integer quantidadeDisponivel, String descricao,
-                        Categoria categoria, Usuario usuario, Set<CaracteristicasRequest> listaCaracteristicas) {
+                   Categoria categoria, Usuario usuario, Set<CaracteristicasRequest> listaCaracteristicas) {
 
         this.nome = nome;
         this.valor = valor;

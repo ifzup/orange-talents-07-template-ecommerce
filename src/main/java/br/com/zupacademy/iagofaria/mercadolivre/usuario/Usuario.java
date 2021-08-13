@@ -76,4 +76,8 @@ public class Usuario implements UserDetails {
     public String getIdString() {
         return id.toString();
     }
+
+    public String getEmail() {
+        return this.email;
+    }
 }
