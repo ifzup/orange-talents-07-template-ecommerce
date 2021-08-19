@@ -2,6 +2,7 @@ package br.com.zupacademy.iagofaria.mercadolivre.produto;
 
 
 import br.com.zupacademy.iagofaria.mercadolivre.categoria.CategoriaRepository;
+import br.com.zupacademy.iagofaria.mercadolivre.opiniao.OpiniaoRequest;
 import br.com.zupacademy.iagofaria.mercadolivre.security.AuthenticateService;
 import br.com.zupacademy.iagofaria.mercadolivre.usuario.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,4 +66,5 @@ public class ProdutoController {
         return ResponseEntity.badRequest().build();
 
     }
+
 }
