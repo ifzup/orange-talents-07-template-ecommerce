@@ -14,13 +14,15 @@ public class Opiniao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Min(1) @Max(5)
+    @Min(1)
+    @Max(5)
     private int nota;
 
     @NotBlank
     private String titulo;
 
-    @NotBlank @Size(max = 500)
+    @NotBlank
+    @Size(max = 500)
     private String descricao;
 
     @ManyToOne
@@ -29,7 +31,9 @@ public class Opiniao {
     private Produto produto;
 
     @ManyToOne
-    private @NotNull @Valid Usuario consumidor;
+    @NotNull
+    @Valid
+    private Usuario consumidor;
 
     @Deprecated
     public Opiniao() {

@@ -3,7 +3,6 @@ package br.com.zupacademy.iagofaria.mercadolivre.opiniao;
 import br.com.zupacademy.iagofaria.mercadolivre.produto.Produto;
 import br.com.zupacademy.iagofaria.mercadolivre.produto.ProdutoRepository;
 import br.com.zupacademy.iagofaria.mercadolivre.usuario.Usuario;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
