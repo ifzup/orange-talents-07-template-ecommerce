@@ -30,9 +30,12 @@ public class Pergunta {
 
     public Pergunta(@NotBlank String titulo,
                     @NotNull @Valid Usuario interessada,
-                    @NotNull @Valid Produto produto) {
+                    @NotNull @Valid Produto produto, @NotNull @Valid Usuario vendedor) {
         this.titulo = titulo;
         this.interessada = interessada;
         this.produto = produto;
+    }
+    public String toEmail() {
+        return "PERGUNTA: " + this.titulo;
     }
 }

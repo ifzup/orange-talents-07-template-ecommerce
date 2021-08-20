@@ -25,7 +25,7 @@ public class PerguntaRequest {
         this.titulo = titulo;
     }
 
-    public Pergunta toModel(@NotNull @Valid Usuario interessada, @NotNull @Valid Produto produto) {
-        return new Pergunta(titulo, interessada, produto);
+    public Pergunta toModel(@NotNull @Valid Usuario vendedor, @NotNull @Valid Usuario interessada, @NotNull @Valid Produto produto) {
+        return new Pergunta(titulo, interessada, produto, vendedor);
     }
 }

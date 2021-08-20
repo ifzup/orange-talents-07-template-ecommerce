@@ -2,6 +2,7 @@ package br.com.zupacademy.iagofaria.mercadolivre.produto;
 
 import br.com.zupacademy.iagofaria.mercadolivre.categoria.Categoria;
 import br.com.zupacademy.iagofaria.mercadolivre.usuario.Usuario;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -82,6 +83,16 @@ public class Produto {
 
         Assert.isTrue(this.listaCaracteristicas.size() >= 3, "Precisa ter no mínimo 3 características");
 
+    }
+    public static Produto buscaPorId(EntityManager manager, Long id){
+        Produto produto = manager.find(Produto.class, id);
+        if(produto == null){
+            throw new ApiException(HttpStatus.NOT_FOUND, "Produdo nao encontrado");
+        }
+        return produto;
+    }
+    public Usuario getUsuario(){
+        return this.usuario;
     }
 
     @Override
