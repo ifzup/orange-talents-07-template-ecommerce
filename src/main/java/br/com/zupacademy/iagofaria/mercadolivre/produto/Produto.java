@@ -1,6 +1,8 @@
 package br.com.zupacademy.iagofaria.mercadolivre.produto;
 
 import br.com.zupacademy.iagofaria.mercadolivre.categoria.Categoria;
+import br.com.zupacademy.iagofaria.mercadolivre.opiniao.Opiniao;
+import br.com.zupacademy.iagofaria.mercadolivre.pergunta.Pergunta;
 import br.com.zupacademy.iagofaria.mercadolivre.usuario.Usuario;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
@@ -15,6 +17,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Entity
@@ -36,7 +39,8 @@ public class Produto {
     private Integer quantidadeDisponivel;
 
     @NotBlank
-    @Size(max = 1000)
+    //@Size(max = 1000)
+    @Column(columnDefinition = "TEXT", length = 1000, nullable = false)
     private String descricao;
 
     @NotNull
@@ -54,6 +58,13 @@ public class Produto {
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
     private Set<ImagemProduto> imagens = new HashSet<>();
+
+    @OneToMany(mappedBy = "produto")
+    private Set<Pergunta> perguntas = new HashSet<>();
+
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+    private Set<Opiniao> opiniao = new HashSet<>();
+
 
     public void associaImagens(Set<String> links) {
         Set<ImagemProduto> imagens = links.stream()
@@ -110,5 +121,68 @@ public class Produto {
 
     @Deprecated
     public Produto() {
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public Integer getQuantidadeDisponivel() {
+        return quantidadeDisponivel;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public Set<Caracteristica> getListaCaracteristicas() {
+        return listaCaracteristicas;
+    }
+
+    public Set<ImagemProduto> getImagens() {
+        return imagens;
+    }
+
+    public Instant getMomentoCadastro() {
+        return momentoCadastro;
+    }
+    public Set<DetalheCaracteristicaDTO> mapCaracteristicas(
+            Function<Caracteristica, DetalheCaracteristicaDTO> fMapeadora) {
+
+        return this.listaCaracteristicas
+                .stream()
+                .map(fMapeadora)
+                .collect(Collectors.toSet());
+
+    }
+
+    public Set<String> mapImagens(Function<ImagemProduto, String> fMapeadora) {
+        return this.imagens
+                .stream()
+                .map(fMapeadora)
+                .collect(Collectors.toSet());
+
+    }
+
+    public Set<String> mapPerguntas(Function<Pergunta, String> fMapeadora) {
+        return this.perguntas
+                .stream()
+                .map(fMapeadora)
+                .collect(Collectors.toSet());
+    }
+
+    public <T> Set<T> mapOpinioes(Function<Opiniao, T> fMapeadora) {
+        return this.opiniao
+                .stream()
+                .map(fMapeadora)
+                .collect(Collectors.toSet());
     }
 }

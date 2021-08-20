@@ -38,4 +38,20 @@ public class Pergunta {
     public String toEmail() {
         return "PERGUNTA: " + this.titulo;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public Usuario getInteressada() {
+        return interessada;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
 }

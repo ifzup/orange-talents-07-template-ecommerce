@@ -58,4 +58,8 @@ public class ImagemProduto {
             return other.produto == null;
         } else return produto.equals(other.produto);
     }
+
+    public String getLink() {
+        return link;
+    }
 }

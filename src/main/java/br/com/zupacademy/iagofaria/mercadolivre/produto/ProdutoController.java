@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.Optional;
@@ -25,6 +26,8 @@ public class ProdutoController {
     private UploaderFake uploaderFake;
 
     private AuthenticateService authenticateService;
+
+    EntityManager manager;
 
     @Autowired
     public ProdutoController(ProdutoRepository produtoRepository, CategoriaRepository categoriaRepository, UploaderFake uploaderFake, AuthenticateService authenticateService) {
@@ -66,4 +69,10 @@ public class ProdutoController {
 
     }
 
+    @GetMapping("/{id}")
+    public DetalhesDoProduto detalhar(@PathVariable("id") Long id) {
+        Produto produto = Produto.buscaPorId(manager, id);
+
+        return new DetalhesDoProduto(produto);
+    }
 }
