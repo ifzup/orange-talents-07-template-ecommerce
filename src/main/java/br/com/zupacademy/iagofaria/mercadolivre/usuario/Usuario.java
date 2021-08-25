@@ -102,8 +102,4 @@ public class Usuario implements UserDetails {
             return other.email == null;
         } else return email.equals(other.email);
     }
-
-    public Long getId() {
-        return id;
-    }
 }
