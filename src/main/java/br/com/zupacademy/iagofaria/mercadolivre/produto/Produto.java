@@ -185,4 +185,14 @@ public class Produto {
                 .map(fMapeadora)
                 .collect(Collectors.toSet());
     }
+    public boolean atualizaEstoque(@Positive int quantidade){
+        Assert.isTrue(quantidade > 0, "A quantidade informada deve ser maior que zero ");
+
+        if(quantidade <= this.quantidadeDisponivel) {
+            this.quantidadeDisponivel-=quantidade;
+            return true;
+        }
+        return false;
+    }
+
 }
