@@ -195,4 +195,7 @@ public class Produto {
         return false;
     }
 
+    public Usuario getDono() {
+        return usuario;
+    }
 }

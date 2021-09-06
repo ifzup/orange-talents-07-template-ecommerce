@@ -1,5 +1,6 @@
 package br.com.zupacademy.iagofaria.mercadolivre.compras;
 
+import br.com.zupacademy.iagofaria.mercadolivre.pergunta.Email;
 import br.com.zupacademy.iagofaria.mercadolivre.produto.Produto;
 import br.com.zupacademy.iagofaria.mercadolivre.produto.ProdutoRepository;
 import br.com.zupacademy.iagofaria.mercadolivre.usuario.Usuario;
@@ -20,12 +21,14 @@ import java.util.HashMap;
 @RequestMapping("/compras")
 public class CompraController {
 
-    @PersistenceContext
-    private EntityManager manager;
-
     @Autowired
     ProdutoRepository produtoRepository;
 
+    @Autowired
+    CompraRepository compraRepository;
+
+    @Autowired
+    private Email email;
     @PostMapping()
     @Transactional
     public ResponseEntity<?> finalizaCompra(@RequestBody @Valid CompraRequest compraRequest,
@@ -38,7 +41,7 @@ public class CompraController {
         if (estoque) {
 
             Compra compra = compraRequest.toModel(produto, usuario);
-            manager.persist(compra);
+            compraRepository.save(compra);
 
             var response = new HashMap<>();
             response.put("Url do pagamento", compra.geraUrlGateway(uriComponentsBuilder));
